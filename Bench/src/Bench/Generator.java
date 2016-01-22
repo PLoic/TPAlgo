@@ -11,7 +11,7 @@ public class Generator {
 
 
 
-    public static String generateString()
+    public String generateString()
     {
         Random rng = new Random(Double.doubleToLongBits(Math.random()));
 
@@ -28,7 +28,7 @@ public class Generator {
     }
 
 
-    public static Set<String> generateSet(int size){
+    public Set<String> generateSet(int size){
 
         Set<String> stringSet = new HashSet<>();
 
@@ -40,6 +40,7 @@ public class Generator {
 
     }
 
+    /*
     public static void main(String[] args) {
 
         final long startTime = System.currentTimeMillis();
@@ -58,4 +59,5 @@ public class Generator {
 
         System.out.println("Total execution time: " + (endTime - startTime) );
     }
+    */
 }
