@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 /**
  * Created by paulettl on 22/01/16.
  */
@@ -66,7 +64,7 @@ public class testArray {
         String[] tmp = list;
 
         for (int i = 0; i < tmp.length ; i++) {
-            ArrayUtils.remove(tmp, i);
+           tmp[i] = null;
         }
 
         assert(tmp.length == 0);
