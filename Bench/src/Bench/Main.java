@@ -1,5 +1,6 @@
 package Bench;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +16,11 @@ public class Main {
 
         strings = generator.generateSet(400000);
 
-        testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
-        testArray.execute(40000);
+        //testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
+        //testArray.execute(40000);
+
+        testList testList = new testList(new ArrayList(strings));
+        testList.execute(40000);
     }
 
 }
