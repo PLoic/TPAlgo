@@ -3,29 +3,39 @@ package Bench;
 import java.util.*;
 
 /**
- * Created by paulettl on 22/01/16.
+ * Created by loic on 28/01/2016.
  */
-public class testArray {
+public class testHash {
 
-    private String[] list;
+    private HashMap map;
 
-    public testArray(String[] list) {
-        this.list = list;
+    public testHash(Set set) {
+
+        map = new HashMap<Integer,String>();
+
+        Integer i = 0;
+
+        Iterator ite = set.iterator();
+
+        while (ite.hasNext()){
+            map.put(i++,ite.next());
+        }
+
     }
 
-    public void execute( int generate ){
+    public void execute(int generate ){
 
         insert(generate);
+
         remove();
-        search();
+
+        //search();
 
     }
 
     private void insert(int generate){
 
-        String[] tmp = new String[list.length + generate];
-
-        java.lang.System.arraycopy(list,0,tmp,0,list.length);
+        HashMap tmp = this.map;
 
         Generator generator = new Generator();
 
@@ -33,10 +43,12 @@ public class testArray {
 
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < stringSet.size() ; i++) {
+        Integer i = tmp.size();
 
-            tmp[list.length + i] =  stringSet.toArray(new String[stringSet.size()])[i];
+        Iterator ite = stringSet.iterator();
 
+        while (ite.hasNext()){
+            map.put(i++,ite.next());
         }
 
         long endTime = System.nanoTime();
@@ -45,39 +57,43 @@ public class testArray {
 
     }
 
+
     private void remove(){
 
-        String[] tmp = list;
+        HashMap tmp = this.map;
+
+        Iterator ite = tmp.entrySet().iterator();
 
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < tmp.length ; i++) {
-           tmp[i] = null;
+        while (ite.hasNext()){
+            map.remove(ite.next());
         }
-
-        assert(tmp.length == 0);
 
         long endTime = System.nanoTime();
 
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
+
     }
+/**
+ * http://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger
 
     private void search(){
 
         Random rng = new Random(Double.doubleToLongBits(Math.random()));
 
-        String[] tmp = list;
+        List tmp = list;
 
-        int nbIndex = (tmp.length * 10) / 100;
+        int nbIndex = (tmp.size() * 10) / 100;
 
         long startTime = System.nanoTime();
 
         for (int i = 0; i < nbIndex ; i++) {
-            Arrays.asList(tmp).get(rng.nextInt(tmp.length));
+            tmp.get(rng.nextInt(tmp.size()));
         }
 
         long endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
-    }
+    }*/
 }

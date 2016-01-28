@@ -15,29 +15,14 @@ public class testList {
 
     public void execute(int generate ){
 
-        long startTime = System.currentTimeMillis();
+
 
         insert(generate);
 
-        long endTime = System.currentTimeMillis();
-
-        System.out.println("Total execution time Insert : " + (endTime - startTime) );
-
-        startTime = System.currentTimeMillis();
-
         remove();
-
-        endTime = System.currentTimeMillis();
-
-        System.out.println("Total execution time remove : " + (endTime - startTime) );
-
-        startTime = System.currentTimeMillis();
 
         search();
 
-        endTime = System.currentTimeMillis();
-
-        System.out.println("Total execution time search : " + (endTime - startTime) );
     }
 
     private void insert(int generate){
@@ -48,7 +33,13 @@ public class testList {
 
         Set<String> stringSet = generator.generateSet(generate);
 
+        long startTime = System.nanoTime();
+
         tmp.addAll(stringSet);
+
+        long endTime = System.nanoTime();
+
+        System.out.println("Total execution time Insert : " + (endTime - startTime) + " ns" );
 
     }
 
@@ -59,7 +50,14 @@ public class testList {
 
         List tmp = this.list;
 
+        long startTime = System.nanoTime();
+
         tmp = new ArrayList<>();
+
+        long endTime = System.nanoTime();
+
+        System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
+
     }
 
     private void search(){
@@ -70,8 +68,14 @@ public class testList {
 
         int nbIndex = (tmp.size() * 10) / 100;
 
+        long startTime = System.nanoTime();
+
         for (int i = 0; i < nbIndex ; i++) {
             tmp.get(rng.nextInt(tmp.size()));
         }
+
+        long endTime = System.nanoTime();
+
+        System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
     }
 }
