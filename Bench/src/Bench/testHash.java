@@ -8,10 +8,11 @@ import java.util.*;
 public class testHash {
 
     private HashMap map;
+    private Generator generator;
 
     public testHash(Set set) {
 
-        map = new HashMap<Integer,String>();
+        this.map = new HashMap<Integer,String>();
 
         Integer i = 0;
 
@@ -21,6 +22,8 @@ public class testHash {
             map.put(i++,ite.next());
         }
 
+        this.generator = new Generator();
+
     }
 
     public void execute(int generate ){
@@ -29,7 +32,7 @@ public class testHash {
 
         remove();
 
-        //search();
+        search();
 
     }
 
@@ -41,11 +44,11 @@ public class testHash {
 
         Set<String> stringSet = generator.generateSet(generate);
 
-        long startTime = System.nanoTime();
-
         Integer i = tmp.size();
 
         Iterator ite = stringSet.iterator();
+
+        long startTime = System.nanoTime();
 
         while (ite.hasNext()){
             map.put(i++,ite.next());
@@ -62,12 +65,12 @@ public class testHash {
 
         HashMap tmp = this.map;
 
-        Iterator ite = tmp.entrySet().iterator();
+        Set<Integer>  rand = generator.generateIndex(tmp.size());
 
         long startTime = System.nanoTime();
 
-        while (ite.hasNext()){
-            map.remove(ite.next());
+        for(Integer j : rand){
+            tmp.remove(j);
         }
 
         long endTime = System.nanoTime();
@@ -75,25 +78,22 @@ public class testHash {
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
 
     }
-/**
- * http://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger
 
     private void search(){
 
-        Random rng = new Random(Double.doubleToLongBits(Math.random()));
 
-        List tmp = list;
+        HashMap tmp = this.map;
 
-        int nbIndex = (tmp.size() * 10) / 100;
+        Set<Integer> rand = generator.generateIndex(tmp.size());
 
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < nbIndex ; i++) {
-            tmp.get(rng.nextInt(tmp.size()));
+        for(Integer j : rand){
+            tmp.get(j);
         }
 
         long endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
-    }*/
+    }
 }

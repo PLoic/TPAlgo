@@ -40,6 +40,21 @@ public class Generator {
 
     }
 
+    public Set<Integer> generateIndex(int size){
+
+        Random rng = new Random(Double.doubleToLongBits(Math.random()));
+
+        int nbIndex = (size * 10) / 100;
+
+        Set<Integer> rand = new HashSet<>();
+
+        for (int i = 0; i < nbIndex ; i++) {
+            rand.add(rng.nextInt(size));
+        }
+
+        return rand;
+    }
+
     /*
     public static void main(String[] args) {
 

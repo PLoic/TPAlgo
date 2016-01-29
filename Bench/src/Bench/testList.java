@@ -6,16 +6,17 @@ import java.util.*;
  * Created by loic on 26/01/2016.
  */
 public class testList {
+
     private List list;
+    private Generator generator;
 
     public testList(List list) {
         this.list = list;
+        this.generator = new Generator();
     }
 
 
     public void execute(int generate ){
-
-
 
         insert(generate);
 
@@ -48,11 +49,17 @@ public class testList {
      */
     private void remove(){
 
-        List tmp = this.list;
+        Random rng = new Random(Double.doubleToLongBits(Math.random()));
+
+        List tmp = list;
+
+        Set<Integer> rand = generator.generateIndex(tmp.size());
 
         long startTime = System.nanoTime();
 
-        tmp = new ArrayList<>();
+        for(Integer j : rand){
+            tmp.remove(j);
+        }
 
         long endTime = System.nanoTime();
 
@@ -62,16 +69,14 @@ public class testList {
 
     private void search(){
 
-        Random rng = new Random(Double.doubleToLongBits(Math.random()));
-
         List tmp = list;
 
-        int nbIndex = (tmp.size() * 10) / 100;
+        Set<Integer> rand = generator.generateIndex(tmp.size());
 
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < nbIndex ; i++) {
-            tmp.get(rng.nextInt(tmp.size()));
+        for(Integer j : rand){
+            tmp.get(j);
         }
 
         long endTime = System.nanoTime();

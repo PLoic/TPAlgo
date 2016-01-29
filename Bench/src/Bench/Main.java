@@ -10,24 +10,24 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
-        Set<String> strings = new HashSet<>();
+        Set<String> strings;
 
         Generator generator = new Generator();
 
-        strings = generator.generateSet(10000);
+        strings = generator.generateSet(50000);
 
         System.out.println("Test Array : ");
         testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
-        testArray.execute(10000);
+        testArray.execute(20000);
 
 
         System.out.println("\nTest List : ");
         testList testList = new testList(new ArrayList(strings));
-        testList.execute(10000);
+        testList.execute(20000);
 
         System.out.println("\nTest Hash : ");
         testHash testHash = new testHash(strings);
-        testHash.execute(10000);
+        testHash.execute(20000);
     }
 
 }

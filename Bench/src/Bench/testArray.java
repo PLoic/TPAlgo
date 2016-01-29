@@ -8,15 +8,19 @@ import java.util.*;
 public class testArray {
 
     private String[] list;
+    private Generator generator;
 
     public testArray(String[] list) {
         this.list = list;
+        this.generator = new Generator();
     }
 
     public void execute( int generate ){
 
         insert(generate);
+
         remove();
+
         search();
 
     }
@@ -26,8 +30,6 @@ public class testArray {
         String[] tmp = new String[list.length + generate];
 
         java.lang.System.arraycopy(list,0,tmp,0,list.length);
-
-        Generator generator = new Generator();
 
         Set<String> stringSet = generator.generateSet(generate);
 
@@ -49,13 +51,13 @@ public class testArray {
 
         String[] tmp = list;
 
+        Set<Integer> rand = generator.generateIndex(list.length);
+
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < tmp.length ; i++) {
-           tmp[i] = null;
+        for(Integer j : rand) {
+            tmp[j] = null;
         }
-
-        assert(tmp.length == 0);
 
         long endTime = System.nanoTime();
 
@@ -64,16 +66,14 @@ public class testArray {
 
     private void search(){
 
-        Random rng = new Random(Double.doubleToLongBits(Math.random()));
-
         String[] tmp = list;
 
-        int nbIndex = (tmp.length * 10) / 100;
+        Set<Integer> rand = generator.generateIndex(list.length);
 
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < nbIndex ; i++) {
-            Arrays.asList(tmp).get(rng.nextInt(tmp.length));
+        for (Integer j : rand) {
+            Arrays.asList(tmp).get(j);
         }
 
         long endTime = System.nanoTime();
