@@ -69,15 +69,16 @@ public class testList {
 
     private void search(){
 
-        List tmp = list;
+        List<String> tmp = list;
 
-        Set<Integer> rand = generator.generateIndex(tmp.size());
+        String toSearch = tmp.get(generator.generateOneIndex(tmp.size()));
+
+        Iterator ite = tmp.iterator();
 
         long startTime = System.nanoTime();
 
-        for(Integer j : rand){
-            tmp.get(j);
-        }
+        while (ite.hasNext())
+            if (ite.next() == toSearch) break;
 
         long endTime = System.nanoTime();
 

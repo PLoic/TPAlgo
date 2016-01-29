@@ -14,20 +14,20 @@ public class Main {
 
         Generator generator = new Generator();
 
-        strings = generator.generateSet(50000);
+        strings = generator.generateSet(100000);
 
-        System.out.println("Test Array : ");
-        testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
-        testArray.execute(20000);
+        //System.out.println("Test Array : ");
+        //testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
+        //testArray.execute(10000);
 
 
         System.out.println("\nTest List : ");
         testList testList = new testList(new ArrayList(strings));
-        testList.execute(20000);
+        testList.execute(10000);
 
-        System.out.println("\nTest Hash : ");
-        testHash testHash = new testHash(strings);
-        testHash.execute(20000);
+        //System.out.println("\nTest Hash : ");
+        //testHash testHash = new testHash(strings);
+        //testHash.execute(10000);
     }
 
 }

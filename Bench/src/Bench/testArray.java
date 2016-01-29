@@ -68,13 +68,12 @@ public class testArray {
 
         String[] tmp = list;
 
-        Set<Integer> rand = generator.generateIndex(list.length);
+        String toSearch = tmp[generator.generateOneIndex(tmp.length)];
 
         long startTime = System.nanoTime();
 
-        for (Integer j : rand) {
-            Arrays.asList(tmp).get(j);
-        }
+        for (int i = 0; i < tmp.length; ++i)
+            if(tmp[i] == toSearch) break;
 
         long endTime = System.nanoTime();
 

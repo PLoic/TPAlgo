@@ -55,6 +55,13 @@ public class Generator {
         return rand;
     }
 
+    public Integer generateOneIndex(int size){
+
+        Random rng = new Random(Double.doubleToLongBits(Math.random()));
+
+        return rng.nextInt(size);
+    }
+
     /*
     public static void main(String[] args) {
 
