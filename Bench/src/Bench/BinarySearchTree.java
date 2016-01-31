@@ -6,10 +6,10 @@ public class BinarySearchTree {
 
 	private class Node {
 
-		private int val;
+		private String val;
 		private Node left, right;
 
-		public Node(int val) {
+		public Node(String val) {
 			this.val = val;
 		}
 
@@ -29,69 +29,121 @@ public class BinarySearchTree {
 			this.right = right;
 		}
 
-		public int getVal() {
+		public String getVal() {
 			return val;
 		}
 	}
 
-	public BinarySearchTree(int val) {
+	public BinarySearchTree(String val) {
 		this.root = new Node(val);
 	}
 
-	public Node search(Node node, int val) {
+	public Node search(Node node, String val) {
 		if (node == null) {
 			return node;
 		}
 
-		if (node.getVal() > val) {
+		if (node.getVal().compareTo(val) < 0) {
 			return search(node.getLeft(), val);
-		} else if (node.getVal() < val) {
+		} else if (node.getVal().compareTo(val) > 0) {
 			return search(node.getRight(), val);
 		}
 		return node;
 	}
-	
+
 	public Node getRoot() {
 		return root;
 	}
 
-	public Node delete(Node prec, Node node, int val) {
+	public void delete(String val) {
+		root = delete(null, root, val);
+	}
+
+	public Node delete(Node prec, Node node, String val) {
 		if (node == null) {
 			return null;
 		}
-		if (node.getVal() > val) {
+		if (node.getVal().compareTo(val) < 0) {
 			delete(node, node.getLeft(), val);
-		} else if (node.getVal() < val) {
+		} else if (node.getVal().compareTo(val) > 0) {
 			delete(node, node.getRight(), val);
+		} else {
+			if (node.getLeft() == null && node.getRight() == null) {
+				if (prec != null) {
+					if (prec.getLeft() == node) {
+						prec.setLeft(null);
+					} else {
+						prec.setRight(null);
+					}
+				} else {
+					node = null;
+				}
+			} else if (node.getRight() == null) {
+				Node tmp = node;
+				node = getMax(tmp.getLeft());
+				node.setLeft(deleteMax(tmp.getLeft()));
+				if (prec != null) {
+					if (prec.getLeft() == tmp) {
+						prec.setLeft(node);
+					} else {
+						prec.setRight(node);
+					}
+				}
+			} else {
+				Node tmp = node;
+				node = getMin(tmp.getRight());
+				node.setRight(deleteMin(tmp.getRight()));
+				node.setLeft(tmp.getLeft());
+				if (prec != null) {
+					if (prec.getLeft() == tmp) {
+						prec.setLeft(node);
+					} else {
+						prec.setRight(node);
+					}
+				}
+			}
 		}
-		balance(prec, node);
 		return node;
 	}
-	
-	public void balance(Node prec, Node node) {
-		if (prec.getLeft() == node) {
-			prec.setLeft(getMin(node));
-		} else {
-			prec.setRight(getMin(node));
+
+	private Node deleteMax(Node node) {
+		if (node.getRight() == null)
+			return node.getLeft();
+		node.setRight(deleteMax(node.getRight()));
+		return node;
+	}
+
+	private Node deleteMin(Node node) {
+		if (node.getLeft() == null) {
+			return node.getRight();
 		}
+		node.setLeft(deleteMin(node.getLeft()));
+		return node;
 	}
-	
+
 	private Node getMin(Node node) {
-		Node tmp = null;
-		for(tmp = node.getLeft(); tmp.getRight() != null; tmp = tmp.getRight());
-		return tmp;
+		if (node.getLeft() == null)
+			return node;
+		return getMin(node.getLeft());
 	}
-	
-	public void insert(Node prec, Node node, int val) {
+
+	private Node getMax(Node node) {
+		if (node.getRight() == null) {
+			return node;
+		}
+		return getMax(node.getRight());
+	}
+
+	public void insert(Node prec, Node node, String val) {
 		if (node == null) {
 			node = new Node(val);
-			if (prec.getVal() >= val) {
+			if (prec.getVal().compareTo(val) < 0) {
 				prec.setLeft(node);
 			} else {
 				prec.setRight(node);
 			}
 		} else {
-			if (node.getVal() >= val) {
+			if (node.getVal().compareTo(val) < 0) {
 				insert(node, node.getLeft(), val);
 			} else {
 				insert(node, node.getRight(), val);
@@ -99,7 +151,6 @@ public class BinarySearchTree {
 		}
 	}
 
-	
 	public void print(Node node) {
 		if (node != null) {
 			System.out.println(node + " pointeur : " + node.getVal());
@@ -107,29 +158,28 @@ public class BinarySearchTree {
 			print(node.getRight());
 		}
 	}
-	
-	public static void main(String[] args) {
-		
+
+	/*public static void main(String[] args) {
+
 		BinarySearchTree bst = new BinarySearchTree(5);
-		
+
 		bst.insert(null, bst.getRoot(), 3);
 		bst.insert(null, bst.getRoot(), 2);
 		bst.insert(null, bst.getRoot(), 12);
-		bst.insert(null, bst.getRoot(), 4);
 		bst.insert(null, bst.getRoot(), 7);
 		bst.insert(null, bst.getRoot(), 9);
 		bst.insert(null, bst.getRoot(), 11);
 		bst.insert(null, bst.getRoot(), 14);
 		bst.insert(null, bst.getRoot(), 6);
-		
+
+		// bst.print(bst.getRoot());
+
+		// System.out.println(bst.search(bst.getRoot(), 14));
+		// System.out.println(bst.search(bst.getRoot(), 9));
+
+		bst.delete(5);
 		bst.print(bst.getRoot());
-		
-		System.out.println(bst.search(bst.getRoot(), 14));
-		System.out.println(bst.search(bst.getRoot(), 9));
-		
-		bst.delete(null, bst.getRoot(), 14);
-		bst.print(bst.getRoot());
-				
-	}
-	
+
+	}*/
+
 }

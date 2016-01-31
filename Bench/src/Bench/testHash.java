@@ -81,7 +81,6 @@ public class testHash {
 
     private void search(){
 
-
         HashMap tmp = this.map;
 
         Set<Integer> rand = generator.generateIndex(tmp.size());
