@@ -48,13 +48,13 @@ public class testHash {
 
         Iterator ite = stringSet.iterator();
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         while (ite.hasNext()){
             map.put(i++,ite.next());
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Insert : " + (endTime - startTime) + " ns" );
 
@@ -67,13 +67,13 @@ public class testHash {
 
         Set<Integer>  rand = generator.generateIndex(tmp.size());
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for(Integer j : rand){
             tmp.remove(j);
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
 
@@ -85,13 +85,13 @@ public class testHash {
 
         Set<Integer> rand = generator.generateIndex(tmp.size());
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for(Integer j : rand){
             tmp.get(j);
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
     }

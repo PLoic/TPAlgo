@@ -34,19 +34,17 @@ public class testList {
 
         Set<String> stringSet = generator.generateSet(generate);
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         tmp.addAll(stringSet);
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Insert : " + (endTime - startTime) + " ns" );
 
     }
 
-    /**
-     * http://stackoverflow.com/questions/6961356/list-clear-vs-list-new-arraylistinteger
-     */
+
     private void remove(){
 
         Random rng = new Random(Double.doubleToLongBits(Math.random()));
@@ -55,13 +53,13 @@ public class testList {
 
         Set<Integer> rand = generator.generateIndex(tmp.size());
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for(Integer j : rand){
             tmp.remove(j);
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
 
@@ -75,12 +73,12 @@ public class testList {
 
         Iterator ite = tmp.iterator();
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         while (ite.hasNext())
             if (ite.next() == toSearch) break;
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
     }

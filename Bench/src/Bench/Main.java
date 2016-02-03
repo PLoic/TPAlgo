@@ -37,19 +37,6 @@ public class Main {
         testAVL testAVL = new testAVL(strings.toArray(new String[strings.size()]));
         testAVL.execute(10000);
 
-        System.out.println();
-        strings = generator.generateSet(100000);
-
-        testAVL = new testAVL(strings.toArray(new String[strings.size()]));
-        testAVL.execute(10000);
-
-        System.out.println();
-        strings = generator.generateSet(100000);
-
-        testAVL = new testAVL(strings.toArray(new String[strings.size()]));
-        testAVL.execute(10000);
-
-
 
     }
 

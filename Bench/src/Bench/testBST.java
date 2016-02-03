@@ -42,7 +42,7 @@ public class testBST {
 
         String[] list = stringSet.toArray(new String[stringSet.size()]);
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for (int i = 0; i < list.length ; i++) {
 
@@ -50,7 +50,7 @@ public class testBST {
 
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Insert : " + (endTime - startTime) + " ns" );
 
@@ -64,11 +64,11 @@ public class testBST {
 
         String toSearch = list[rand];
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         bstTemp.delete(null,bstTemp.getRoot(),toSearch);
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
     }
@@ -81,11 +81,11 @@ public class testBST {
 
         String toSearch = list[rand];
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         assert(bstTemp.search(bstTemp.getRoot(),toSearch) != null);
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
     }

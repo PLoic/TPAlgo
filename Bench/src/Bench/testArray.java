@@ -33,7 +33,7 @@ public class testArray {
 
         Set<String> stringSet = generator.generateSet(generate);
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for (int i = 0; i < stringSet.size() ; i++) {
 
@@ -41,7 +41,7 @@ public class testArray {
 
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Insert : " + (endTime - startTime) + " ns" );
 
@@ -53,13 +53,13 @@ public class testArray {
 
         Set<Integer> rand = generator.generateIndex(list.length);
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for(Integer j : rand) {
             tmp[j] = null;
         }
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Remove : " + (endTime - startTime) + " ns" );
     }
@@ -70,12 +70,12 @@ public class testArray {
 
         String toSearch = tmp[generator.generateOneIndex(tmp.length)];
 
-        long startTime = System.nanoTime();
+        double startTime = System.nanoTime();
 
         for (int i = 0; i < tmp.length; ++i)
             if(tmp[i] == toSearch) break;
 
-        long endTime = System.nanoTime();
+        double endTime = System.nanoTime();
 
         System.out.println("Total execution time Search : " + (endTime - startTime) + " ns" );
     }
