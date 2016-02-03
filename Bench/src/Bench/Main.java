@@ -14,7 +14,7 @@ public class Main {
 
         Generator generator = new Generator();
 
-        strings = generator.generateSet(10000);
+        strings = generator.generateSet(100000);
 
         //System.out.println("Test Array : ");
         //testArray testArray = new testArray(strings.toArray(new String[strings.size()]));
@@ -29,9 +29,28 @@ public class Main {
         //testHash testHash = new testHash(strings);
         //testHash.execute(10000);
 
-        System.out.println("\nTest BST : ");
-        testBST testBST = new testBST(strings.toArray(new String[strings.size()]));
-        testBST.execute(10000);
+        //System.out.println("\nTest BST : ");
+        //testBST testBST = new testBST(strings.toArray(new String[strings.size()]));
+        //testBST.execute(10000);
+
+        System.out.println("\nTest AVL : ");
+        testAVL testAVL = new testAVL(strings.toArray(new String[strings.size()]));
+        testAVL.execute(10000);
+
+        System.out.println();
+        strings = generator.generateSet(100000);
+
+        testAVL = new testAVL(strings.toArray(new String[strings.size()]));
+        testAVL.execute(10000);
+
+        System.out.println();
+        strings = generator.generateSet(100000);
+
+        testAVL = new testAVL(strings.toArray(new String[strings.size()]));
+        testAVL.execute(10000);
+
+
+
     }
 
 }
